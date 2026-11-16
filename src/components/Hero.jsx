@@ -13,6 +13,8 @@ const PROJECT_THUMBS = [
 ];
 
 const FULL_NAME = `${developer.heading.first}${developer.heading.second}`;
+// Once the phone name retires, the hero copy moves up to this anchor.
+const MOBILE_RETIRED_TOP = '12%';
 const SPLIT_AT = developer.heading.first.length;
 
 const headingClassName =
@@ -44,6 +46,7 @@ export default function Hero({ onPreloadComplete }) {
   const ctaRef = useRef(null);
   const imgAnchorRef = useRef(null);
   const onCompleteRef = useRef(onPreloadComplete);
+  const nameRetiredRef = useRef(false);
 
   useEffect(() => {
     onCompleteRef.current = onPreloadComplete;
@@ -62,7 +65,6 @@ export default function Hero({ onPreloadComplete }) {
   useEffect(() => {
     if (isSmallScreen) {
       document.body.style.overflowX = 'hidden';
-      onCompleteRef.current?.();
       return;
     }
 
@@ -211,6 +213,32 @@ export default function Hero({ onPreloadComplete }) {
         },
         '<'
       );
+
+      // Phones only: once the split has settled, retire the big name so the
+      // portrait stays unobstructed and the nav brand is the only name on
+      // screen. Desktop keeps the split name.
+      if (isMobile) {
+        nameRetiredRef.current = true;
+        tl.set(headingRef.current, { transition: 'none' }, '+=0.5');
+        tl.to(
+          headingRef.current,
+          {
+            opacity: 0,
+            y: -26,
+            scale: 0.96,
+            duration: 0.7,
+            ease: 'power2.inOut'
+          },
+          '<'
+        );
+        // Lift the subtitle and CTA into the space the name leaves behind,
+        // otherwise the hero keeps a dead band under the nav.
+        tl.to(
+          containerRef.current,
+          { top: MOBILE_RETIRED_TOP, duration: 0.9, ease: 'power2.inOut' },
+          '<'
+        );
+      }
     });
 
     return () => ctx.revert();
@@ -239,7 +267,8 @@ export default function Hero({ onPreloadComplete }) {
         ? Math.min(window.innerWidth * 0.2, room)
         : Math.min(288, window.innerWidth * 0.2, room);
 
-      gsap.set(container, { top: isMobile ? '20%' : '74%' });
+      const topPct = isMobile ? (nameRetiredRef.current ? MOBILE_RETIRED_TOP : '20%') : '74%';
+      gsap.set(container, { top: topPct });
       gsap.set(left, { x: -split / 2 });
       gsap.set(right, { x: split / 2 });
     };

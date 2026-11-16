@@ -336,7 +336,7 @@ export default function ComponentsShelf() {
       ref={containerRef}
       id="components"
       className={`bg-[#050505] w-full text-white overflow-hidden ${
-        shouldPin ? 'h-screen flex flex-col justify-center py-0' : 'pt-10 md:pt-20 pb-24'
+        shouldPin ? 'h-screen flex flex-col justify-center py-0' : 'pt-10 md:pt-20 pb-12 md:pb-16'
       }`}
     >
       <div className="max-w-[1600px] mx-auto w-full flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-5 px-6 md:px-16">

@@ -9,14 +9,17 @@ import Play from './components/Play';
 import Contact from './components/Contact';
 
 export default function App() {
+  // Every width stays blank until the hero intro finishes: on phones the nav
+  // brand and the burger used to be visible during the very first animation.
+  // A deep link (#about) skips the wait.
   const [preloadComplete, setPreloadComplete] = useState(() => {
     if (typeof window !== 'undefined') {
-      return window.innerWidth < 1024 || Boolean(window.location.hash);
+      return Boolean(window.location.hash);
     }
     return false;
   });
   useEffect(() => {
-    if (typeof window !== 'undefined' && (window.innerWidth < 1024 || window.location.hash)) {
+    if (typeof window !== 'undefined' && window.location.hash) {
       setPreloadComplete(true);
     }
   }, []);
@@ -31,15 +34,13 @@ export default function App() {
           <Services />
           <Projects />
           <ComponentsShelf />
-          <section id="play" className="bg-[#050505] text-white py-24 md:py-32 px-4 sm:px-6 md:px-16">
-            <div className="mx-auto max-w-5xl">
-              <Play
-                lines={['SAMIR', 'PURI']}
-                caption="Break it if you can. It still ships."
-                panelClassName="aspect-[5/6] sm:aspect-[4/3] lg:aspect-[16/9]"
-              />
-            </div>
-          </section>
+          {/* Play renders its own <section id="play">; wrapping it again doubled
+              the vertical padding and produced a dead band above and below. */}
+          <Play
+            lines={['SAMIR', 'PURI']}
+            caption="Break it if you can. It still ships."
+            panelClassName="aspect-[5/6] sm:aspect-[4/3] lg:aspect-[16/9]"
+          />
           <Contact />
         </div>
       )}

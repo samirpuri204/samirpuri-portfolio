@@ -55,7 +55,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="bg-[#050505] text-white pt-24 pb-0 px-6 md:px-16 flex flex-col justify-center relative overflow-hidden"
+      className="bg-[#050505] text-white pt-16 md:pt-24 pb-0 px-6 md:px-16 flex flex-col justify-center relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full z-10 py-10 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-8 md:gap-12 lg:gap-24 items-center">

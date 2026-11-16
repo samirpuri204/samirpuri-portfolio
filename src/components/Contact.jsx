@@ -105,7 +105,7 @@ export default function Contact() {
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-transparent to-black/85 pointer-events-none" />
 
       {/* Main Content Grid */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-28 pb-16 md:pt-32 flex-1 flex items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-16 pt-20 md:pt-28 pb-16 flex-1 flex items-center">
         <div className="w-full flex flex-col lg:flex-row gap-14 lg:gap-24">
           {/* Left Column: CTA & Info */}
           <div className="w-full lg:w-6/12 flex flex-col">

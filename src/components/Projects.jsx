@@ -8,7 +8,7 @@ export default function Projects() {
     <div
       ref={containerRef}
       id="project"
-      className="bg-[#050505] w-full text-white pt-10 md:pt-20 pb-24 px-6 md:px-16"
+      className="bg-[#050505] w-full text-white pt-10 md:pt-20 pb-12 md:pb-16 px-6 md:px-16"
     >
       <div className="flex flex-col lg:flex-row justify-between items-start w-full z-10 gap-12 lg:gap-0 mb-20 lg:mb-32">
         <div className="w-full lg:w-7/12 overflow-visible">
@@ -57,7 +57,7 @@ export default function Projects() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-24 lg:gap-40 w-full">
+      <div className="flex flex-col gap-16 lg:gap-28 w-full">
         {projects.map((item, idx) => {
           const isEven = idx % 2 === 0;
           return (
