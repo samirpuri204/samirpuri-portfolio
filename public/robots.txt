@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://samirpuri.com.np/sitemap.xml
